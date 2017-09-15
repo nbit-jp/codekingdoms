@@ -26,17 +26,39 @@ public class Player extends BasePlayer {
 	public void onPlaceBlock( Block block ) {
 		
 		if (block.getType() == Material.BEACON) {
-			if (!hasEgg) {
-				placeSpawn();
+			if (! hasEgg) {
+				placeSpawn(block);
 			}
 		}
 	}
 	
-	public void placeSpawn() {
-
+	public void placeSpawn( Block block ) {
+		
+		buildBase(block);
 		hasEgg = true;
 		getGame().broadcastMessage(ChatColor.AQUA + (name + " placed their egg."));
 	
+	}
+	
+	public void buildBase( Block block ) {
+		
+		getGame().setBlockTypeInArea(
+			Material.IRON_BLOCK, 
+			block.getLocation().add((new Location(world, -1, -1, -1))),
+			block.getLocation().add((new Location(world,  1, -1,  1)))
+		);
+		getGame().setBlockTypeInArea(
+			Material.AIR, 
+			block.getLocation().add((new Location(world,  0,  1, 0))),
+			block.getLocation().add((new Location(world,  0,128, 0)))
+		);
+		addProtectedArea(
+			block.getLocation().add((new Location(world, -1, -1, -1))),
+			block.getLocation().add((new Location(world,  1, -1,  1)))
+		);
+		block.getRelative( 1, 0, 0).setType(Material.WORKBENCH);
+		block.getRelative(-1, 0, 0).setType(Material.CHEST);
+
 	}
 		
 }
