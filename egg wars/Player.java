@@ -77,7 +77,11 @@ public class Player extends BasePlayer {
 	public void onDeath(){
 		
 		setSpawn();
-		
+		clearInventory();
+		if (!hasEgg) {
+			setGameMode(GameMode.SPECTATOR);
+		}
+				
 	}
 
 	public void onMine(Block block){
@@ -96,5 +100,5 @@ public class Player extends BasePlayer {
 		sendMessage(ChatColor.RED + "Your egg was broken! You will no longer respawn!");
 		getGame().broadcastMessage(ChatColor.AQUA + (name + "'s egg was broken."));
 	}
-	
+
 }
