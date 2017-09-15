@@ -14,11 +14,11 @@ public class Player extends BasePlayer {
 	
 	public void onStart() {
 		
-		setAllowFlight(true);
-		clearInventory();
-		setGameMode(GameMode.SURVIVAL);
-		addItemToInventory(Material.BEACON);
-	
+		setAllowFlight(true);					// 飛べるか
+		clearInventory();						// アイテムのクリア
+		setGameMode(GameMode.SURVIVAL);			// サバイバルモード
+		addItemToInventory(Material.BEACON);	// アイテムをインベントリに追加
+		
 	}
 	
 	
