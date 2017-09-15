@@ -5,7 +5,9 @@ import org.bukkit.Material;
 import org.bukkit.GameMode;
 
 public class Player extends BasePlayer {
-	
+
+	public boolean hasEgg;
+
 	public void onJoin() {
 		
 		onStart();
@@ -18,15 +20,22 @@ public class Player extends BasePlayer {
 		clearInventory();						// アイテムのクリア
 		setGameMode(GameMode.SURVIVAL);			// サバイバルモード
 		addItemToInventory(Material.BEACON);	// アイテムをインベントリに追加
-		
+		hasEgg = false;
 	}
 	
 	public void onPlaceBlock( Block block ) {
 		
-		if( block.getType() == Material.BEACON ) {
-			
-			sendMessage("Egg placed!");
+		if (block.getType() == Material.BEACON) {
+			if (!hasEgg) {
+				placeSpawn();
+			}
 		}
+	}
+	
+	public void placeSpawn() {
+
+		hasEgg = true;
+		getGame().broadcastMessage(ChatColor.AQUA + (name + " placed their egg."));
 	
 	}
 		
