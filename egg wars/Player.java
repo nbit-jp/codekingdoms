@@ -21,5 +21,13 @@ public class Player extends BasePlayer {
 		
 	}
 	
+	public void onPlaceBlock( Block block ) {
+		
+		if( block.getType() == Material.BEACON ) {
+			
+			sendMessage("Egg placed!");
+		}
 	
+	}
+		
 }
