@@ -7,11 +7,13 @@ import org.bukkit.GameMode;
 public class Player extends BasePlayer {
 
 	public boolean hasEgg;
+	public Block egg;
 
 	public void onJoin() {
 		
 		onStart();
-	
+		egg = world.getBlockAt( getLocation() );
+
 	}
 	
 	public void onStart() {
@@ -37,7 +39,9 @@ public class Player extends BasePlayer {
 		buildBase(block);
 		hasEgg = true;
 		getGame().broadcastMessage(ChatColor.AQUA + (name + " placed their egg."));
-	
+		egg = block;
+		setSpawn();
+
 	}
 	
 	public void buildBase( Block block ) {
@@ -60,5 +64,19 @@ public class Player extends BasePlayer {
 		block.getRelative(-1, 0, 0).setType(Material.CHEST);
 
 	}
+
+	public void setSpawn(){
 		
+		Location spawnLocation = egg.getLocation();
+		spawnLocation = world.getHighestBlockAt(spawnLocation).getLocation();
+		spawnLocation.add(new Location(world, 0, 1, 0));
+		setBedSpawnLocation(spawnLocation);
+		
+	}
+	
+	public void onDeath(){
+		
+		setSpawn();
+		
+	}		
 }
