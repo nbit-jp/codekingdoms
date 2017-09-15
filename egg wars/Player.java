@@ -78,5 +78,23 @@ public class Player extends BasePlayer {
 		
 		setSpawn();
 		
-	}		
+	}
+
+	public void onMine(Block block){
+		if (block.getType() == Material.BEACON) {
+			for(Player player : getGame().getPlayerList()){
+				if (player.hasEgg && player.egg.equals(block)){
+					player.loseEgg();
+				}
+			}
+		}
+	}
+	
+	public void loseEgg() {
+		
+		hasEgg = false;
+		sendMessage(ChatColor.RED + "Your egg was broken! You will no longer respawn!");
+		getGame().broadcastMessage(ChatColor.AQUA + (name + "'s egg was broken."));
+	}
+	
 }
