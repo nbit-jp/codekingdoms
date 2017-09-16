@@ -89,6 +89,7 @@ public class Player extends BasePlayer {
 			clearInventory();
 			if (! hasEgg) {
 				setGameMode(GameMode.SPECTATOR);
+				getGame().onPlayerLost();
 			}
 		}
 	}
@@ -119,5 +120,5 @@ public class Player extends BasePlayer {
 		resetHealth();
 		
 	}
-	
+
 }

@@ -11,7 +11,7 @@ public class Game extends BaseGame {
 		setKeepInventory(true);		// 死んだ時にアイテムをキープするか
 		canDropItems = false;		// アイテムをドロップするか
 		fightStarted = false;
-		for (Player player:getPlayerList()) {
+		for (Player player : getPlayerList()) {
 			
 			player.onStart();
 			
@@ -37,6 +37,27 @@ public class Game extends BaseGame {
 			player.onStartFight();
 		}		
 
-	}	
+	}
 	
+	public void onPlayerLost() {
+		
+		int survivors = 0;
+		String winnerName = "NOBODY";
+		for (Player player:getPlayerList()) {
+			
+			if (player.getGameMode() == GameMode.SURVIVAL) {
+				
+				survivors = survivors + 1;
+				winnerName = player.name;
+				
+			}
+
+		}
+		if ( survivors > 1 ) {
+			return;
+		}
+		broadcastTitle(winnerName + " wins!", "");
+		resetGame();
+
+	}	
 }
