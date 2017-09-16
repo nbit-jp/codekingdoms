@@ -11,8 +11,14 @@ public class Player extends BasePlayer {
 
 	public void onJoin() {
 		
-		onStart();
-		egg = world.getBlockAt( getLocation() );
+		egg = world.getBlockAt(getLocation());
+		if (getGame().fightStarted) {
+			setGameMode(GameMode.SPECTATOR);
+			hasEgg = false;
+			sendMessage("There's already a game in progress... You will join when it restarts!");
+		} else {
+			onStart();
+		}
 
 	}
 	
@@ -28,7 +34,7 @@ public class Player extends BasePlayer {
 	public void onPlaceBlock( Block block ) {
 		
 		if (block.getType() == Material.BEACON) {
-			if (! hasEgg) {
+			if (!hasEgg && !getGame().fightStarted) {
 				placeSpawn(block);
 			}
 		}
@@ -77,12 +83,13 @@ public class Player extends BasePlayer {
 	
 	public void onDeath(){
 		
-		setSpawn();
-		clearInventory();
-		if (!hasEgg) {
-			setGameMode(GameMode.SPECTATOR);
+		if (getGame().fightStarted) {
+			setSpawn();
+			clearInventory();
+			if (! hasEgg) {
+				setGameMode(GameMode.SPECTATOR);
+			}
 		}
-				
 	}
 
 	public void onMine(Block block){
