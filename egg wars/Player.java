@@ -41,6 +41,7 @@ public class Player extends BasePlayer {
 		getGame().broadcastMessage(ChatColor.AQUA + (name + " placed their egg."));
 		egg = block;
 		setSpawn();
+		getGame().placeEgg();
 
 	}
 	

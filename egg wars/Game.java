@@ -13,9 +13,23 @@ public class Game extends BaseGame {
 			player.onStart();
 			
 		}
-		
 	
 	}
+
+	public void placeEgg() {
+		
+		for (Player player : getPlayerList()) {
+			if(!player.hasEgg) {
+				return;
+			}
+		}
+		startFight();
+	}
 	
+	public void startFight() {
+		
+		broadcastTitle("All eggs placed", "Time to fight!");
+		
+	}	
 	
 }
