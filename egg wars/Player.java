@@ -29,6 +29,7 @@ public class Player extends BasePlayer {
 		setGameMode(GameMode.SURVIVAL);			// サバイバルモード
 		addItemToInventory(Material.BEACON);	// アイテムをインベントリに追加
 		hasEgg = false;
+		canMine = false;
 	}
 	
 	public void onPlaceBlock( Block block ) {
@@ -109,4 +110,14 @@ public class Player extends BasePlayer {
 		getGame().broadcastMessage(ChatColor.AQUA + (name + "'s egg was broken."));
 	}
 
+	public void onStartFight() {
+		
+		clearInventory();
+		returnToSpawn();
+		canMine = true;
+		setAllowFlight(false);
+		resetHealth();
+		
+	}
+	
 }

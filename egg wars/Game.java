@@ -5,7 +5,7 @@ import com.codekingdoms.nozzle.base.BaseGame;
 public class Game extends BaseGame {
 	
 	public boolean fightStarted;
-	
+
 	public void onCodeUpdate() {
 		
 		setKeepInventory(true);		// 死んだ時にアイテムをキープするか
@@ -33,6 +33,9 @@ public class Game extends BaseGame {
 		
 		broadcastTitle("All eggs placed", "Time to fight!");
 		fightStarted = true;
+		for (Player player : getPlayerList()) {
+			player.onStartFight();
+		}		
 
 	}	
 	
