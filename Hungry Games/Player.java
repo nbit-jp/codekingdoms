@@ -6,17 +6,18 @@ public class Player extends BasePlayer {
 	
 	public void onJoin() {
 		
-		if  (getGame().gamePhase > 1) {
+		if (getGame().gamePhase > 1) {
 			
-			kickPlayer("There is already a game in progress!");
+			setGameMode(GameMode.SPECTATOR);
+			sendMessage("There is already a game in progress! You've been made a spectator!");
+			
+		}
 
-		}	
-
-	}	
-
+	}
+	
 	public void onDeath() {
 		
-		kickPlayer("You died!");
+		setGameMode(GameMode.SPECTATOR);
 		getGame().checkGameOver();
 		getGame().playSound(Sound.ENTITY_LIGHTNING_THUNDER);
 		
