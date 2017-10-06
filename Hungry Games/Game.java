@@ -18,9 +18,19 @@ public class Game extends BaseGame {
 	}
 	
 	public void onTimerExpire() {
-		
-		world.setPVP(true);
-		createWorldBorder(500);
+	
+		if(gamePhase == 1) {
+			
+			createWorldBorder(500);
+			gamePhase = 2;
+			startTimer(10);
+			
+		} else if (gamePhase == 2) {
+			
+			world.setPVP(true);
+			gamePhase = 3;
+			
+		}
 	}
 			
 }
