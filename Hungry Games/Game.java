@@ -15,6 +15,11 @@ public class Game extends BaseGame {
 		disableMobSpawning();
 		gamePhase = 1;
 		broadcastMessage("Game starts in 30 seconds...");
+		for (Player player : getPlayerList()) {
+			
+			player.startGame();
+			
+		}		
 
 	}
 	

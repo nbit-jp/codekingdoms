@@ -22,5 +22,11 @@ public class Player extends BasePlayer {
 		getGame().playSound(Sound.ENTITY_LIGHTNING_THUNDER);
 		
 	}
+
+	public void startGame() {
+		
+		setGameMode(GameMode.ADVENTURE);
+		
+	}	
 		
 }
