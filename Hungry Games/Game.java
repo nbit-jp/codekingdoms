@@ -4,6 +4,8 @@ import com.codekingdoms.nozzle.base.BaseGame;
 
 public class Game extends BaseGame {
 	
+	public int gamePhase;
+	
 	public void onCodeUpdate() {
 		
 		createWorldBorder(6);
@@ -11,6 +13,8 @@ public class Game extends BaseGame {
 		startTimer(30);
 		world.setPVP(false);
 		disableMobSpawning();
+		gamePhase = 1;
+		
 	}
 	
 	public void onTimerExpire() {
