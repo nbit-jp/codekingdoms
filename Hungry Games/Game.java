@@ -15,7 +15,7 @@ public class Game extends BaseGame {
 		disableMobSpawning();
 		gamePhase = 1;
 		broadcastMessage("Game starts in 30 seconds...");
-		
+
 	}
 	
 	public void onTimerExpire() {
@@ -35,5 +35,14 @@ public class Game extends BaseGame {
 			
 		}
 	}
-			
+
+	public void checkGameOver() {
+		
+			if (getPlayerList().length < 2) {
+				
+				resetGame();
+				broadcastTitle("You won!", "May the odds be ever in your favour!");
+				
+			}
+	}			
 }

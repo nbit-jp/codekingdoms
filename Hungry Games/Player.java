@@ -17,6 +17,8 @@ public class Player extends BasePlayer {
 	public void onDeath() {
 		
 		kickPlayer("You died!");
+		getGame().checkGameOver();
+		getGame().playSound(Sound.ENTITY_LIGHTNING_THUNDER);
 		
 	}
 		
