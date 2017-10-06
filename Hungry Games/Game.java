@@ -20,29 +20,45 @@ public class Game extends BaseGame {
 	
 	public void onTimerExpire() {
 	
-		if (gamePhase == 1) {
+		gamePhase = gamePhase + 1;
+		
+		switch (gamePhase) {
 			
-			createWorldBorder(500);
-			gamePhase = 2;
-			startTimer(10);
-			broadcastMessage("Go! PVP starrts in 10 seconds!");
+			case 2:
+
+				createWorldBorder(500);
+				gamePhase = 2;
+				startTimer(10);
+				broadcastMessage("Go! PVP starrts in 10 seconds!");
+				break;
 			
-		} else if (gamePhase == 2) {
+			case 3:
 			
-			world.setPVP(true);
-			broadcastMessage("PVP is started! Fight!");
-			gamePhase = 3;
+				world.setPVP(true);
+				broadcastMessage("PVP is started! Fight!");
+				startTimer(600);
+				break;
 			
+			case 4:
+				
+				expandWorldBorder(-450, 120);
+				break;
+				
+			case 5:
+				
+				resetGame();
+				break;
 		}
 	}
-
+	
 	public void checkGameOver() {
 		
 			if (getPlayerList().length < 2) {
 				
-				resetGame();
+				startTimer(10);
 				broadcastTitle("You won!", "May the odds be ever in your favour!");
+				gamePhase = 4;
 				
 			}
-	}			
+	}
 }
