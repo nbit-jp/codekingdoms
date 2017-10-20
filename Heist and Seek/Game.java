@@ -3,6 +3,7 @@ package space.codekingdoms.nbituser.mylazyheist;
 import com.codekingdoms.nozzle.base.BaseGame;
 import org.bukkit.Location;
 import org.bukkit.Difficulty;
+import com.codekingdoms.nozzle.utils.Random;
 
 public class Game extends BaseGame {
 	
@@ -22,16 +23,18 @@ public class Game extends BaseGame {
 	
 	public void startHiding() {
 		
-		if ( getPlayerList().length == 0 ) {
+		if (getPlayerList().length == 0) {
 			
 			broadcastMessage("No players on your server, game stopping.");
 			return;
 		}
+		
+		int chosenPlayerNumber = Random.generateInteger(1, getPlayerList().length);
+		chosenPlayerNumber = chosenPlayerNumber - 1;
+		Player chosenPlayer = getPlayerList()[chosenPlayerNumber];
 
-		Player chosenPlayer = getPlayerList() [0];
-
-		for ( Player player : getPlayerList()) {
-			if (player.equals( chosenPlayer )) {
+		for (Player player:getPlayerList()) {
+			if (player.equals(chosenPlayer)) {
 				
 				player.isHider = true;
 				player.sendMessage("You're hiding stuff!");
@@ -39,8 +42,8 @@ public class Game extends BaseGame {
 			} else {
 				
 				player.isHider = false;
-
-			}
+				
+			}		
 		}
 	}
 	
