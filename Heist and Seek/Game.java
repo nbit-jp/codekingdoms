@@ -47,6 +47,30 @@ public class Game extends BaseGame {
 				
 			}
 		}
+		startTimer(120);
+	
+	}
+	
+	public void onTimerExpire() {
+		
+		startSeeking();
+		
+	}
+	
+	public void startSeeking() {
+		
+		for( Player player : getPlayerList()) {
+			
+			if( player.isHider) {
+				
+				player.endHiding();
+				
+			} else {
+				
+				player.unfreeze();
+				
+			}
+		}
 	}
 		
 }

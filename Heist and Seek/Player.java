@@ -42,11 +42,23 @@ public class Player extends BasePlayer {
 		
 	}
 	
+	public void endHiding() {
+		
+		sendMessage("Time's up! Let's see if anyone finds your boxes!");
+
+	}
+	
 	public void freeze() {
 		
 		sendMessage("You're going to be finding boxes! wait for the hider to hide all the boxes!" );
 		teleport( getGame().jail );
 		
 	}
-	
+
+	public void unfreeze() {
+		
+		sendMessage("Time to find the boxes! Go!");
+		teleport(getGame().outside);
+		
+	}	
 }
