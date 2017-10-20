@@ -7,6 +7,7 @@ import org.bukkit.Material;
 public class Player extends BasePlayer {
 	
 	public int score;
+	public boolean isHider;
 	
 	public void onJoin() {
 		
@@ -25,15 +26,27 @@ public class Player extends BasePlayer {
 	
 	public void onMine( Block block ) {
 		
-		if (block.getType().equals(Material.STAINED_GLASS)) {
+		if (( ! isHider ) && block.getType().equals(Material.STAINED_GLASS)) {
 			
 			score = score + 1;
-			getGame().broadcastMessage( name + " got a box, now has " + score );
+			getGame().broadcastMessage( name + " got a box, now has " + score);
 			
 		}
-		
 	
 	}
 	
+	public void startHiding() {
+		
+		sendMessage("You're hiding the boxes! Hide as many boxes as you can around the map.");
+		teleport( getGame().outside );
+		
+	}
+	
+	public void freeze() {
+		
+		sendMessage("You're going to be finding boxes! wait for the hider to hide all the boxes!" );
+		teleport( getGame().jail );
+		
+	}
 	
 }

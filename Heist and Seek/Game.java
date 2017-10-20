@@ -27,24 +27,26 @@ public class Game extends BaseGame {
 			
 			broadcastMessage("No players on your server, game stopping.");
 			return;
+			
 		}
 		
 		int chosenPlayerNumber = Random.generateInteger(1, getPlayerList().length);
 		chosenPlayerNumber = chosenPlayerNumber - 1;
 		Player chosenPlayer = getPlayerList()[chosenPlayerNumber];
 
-		for (Player player:getPlayerList()) {
+		for (Player player:getPlayerList()) {		
 			if (player.equals(chosenPlayer)) {
 				
 				player.isHider = true;
-				player.sendMessage("You're hiding stuff!");
+				player.startHiding();
 				
 			} else {
 				
 				player.isHider = false;
+				player.freeze();
 				
-			}		
+			}
 		}
 	}
-	
+		
 }
