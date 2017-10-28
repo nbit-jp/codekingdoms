@@ -1,15 +1,18 @@
 package space.codekingdoms.nbituser.myswiftgames;
 
+import org.bukkit.World;
+import org.bukkit.Location;
 import com.codekingdoms.nozzle.base.BaseGame;
 
 public class Game extends BaseGame {
 	
 	public int gamePhase;
-	
+	Location centerStage = new Location(world, 140.53, 72, 242.64);
+
 	public void onCodeUpdate() {
 		
 		createWorldBorder(6);
-		setWorldBorderCenter(new Location(world, 140.53, 72, 242.64));
+		setWorldBorderCenter(centerStage);
 		startTimer(30);
 		world.setPVP(false);
 		disableMobSpawning();
