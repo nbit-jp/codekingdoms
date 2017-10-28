@@ -61,12 +61,24 @@ public class Game extends BaseGame {
 	
 	public void checkGameOver() {
 		
-			if (getPlayerList().length < 2) {
-				
-				startTimer(10);
-				broadcastTitle("You won!", "May the odds be ever in your favour!");
-				gamePhase = 4;
+		int playerCount = 0;
+
+		for (Player player : getPlayerList()) {
+
+			if (player.getGameMode() == GameMode.ADVENTURE) {
+
+				playerCount = playerCount + 1;
 				
 			}
+						
+		}
+		
+		if (playerCount < 2) {
+				
+			startTimer(10);
+			broadcastTitle("You won!", "May the odds be ever in your favour!");
+			gamePhase = 4;
+				
+		}
 	}
 }
