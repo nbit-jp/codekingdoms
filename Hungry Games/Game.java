@@ -7,12 +7,14 @@ import org.bukkit.GameMode;
 
 public class Game extends BaseGame {
 	
-	public int gamePhase;
+	public int gamePhase;	
 	Location centerStage = new Location(world, 140.53, 72, 242.64);
 	public Location[] spawnPoints;
+	public int spawnNumber;
 
 	public void onCodeUpdate() {
 		
+		spawnNumber = 0;
 		spawnPoints = new Location[8];
 		spawnPoints[0] = new Location(world, 140.52, 72 ,224.24);
 		spawnPoints[1] = new Location(world, 140.51, 72 ,260.66);
@@ -32,7 +34,13 @@ public class Game extends BaseGame {
 		for (Player player : getPlayerList()) {
 			
 			player.startGame();
-			player.teleport(spawnPoints[0]);
+			player.teleport(spawnPoints[spawnNumber]);
+			spawnNumber = spawnNumber + 1;
+			if(spawnNumber >= spawnPoints.length){
+
+				spawnNumber = 0;
+
+			}
 			
 		}
 		
@@ -49,8 +57,11 @@ public class Game extends BaseGame {
 				gamePhase = 2;
 				startTimer(10);
 				broadcastMessage("Go! PVP starrts in 10 seconds!");
+				for (Player player : getPlayerList()) {
+					player.canMove = true;
+				}
 				break;
-							
+				
 			case 3:
 				
 				world.setPVP(true);
@@ -73,7 +84,7 @@ public class Game extends BaseGame {
 	public void checkGameOver() {
 		
 		int playerCount = 0;
-		
+
 		for (Player player : getPlayerList()) {
 			
 			if (player.getGameMode() == GameMode.ADVENTURE) {
