@@ -7,7 +7,7 @@ import org.bukkit.GameMode;
 
 public class Game extends BaseGame {
 	
-	public int gamePhase;	
+	public int gamePhase;
 	Location centerStage = new Location(world, 140.53, 72, 242.64);
 	public Location[] spawnPoints;
 	public int spawnNumber;
@@ -31,21 +31,26 @@ public class Game extends BaseGame {
 		disableMobSpawning();
 		gamePhase = 1;
 		broadcastMessage("Game starts in 30 seconds...");
-		for (Player player : getPlayerList()) {
-			
+		for(Player player : getPlayerList()) {
+			movePlayerToSpawn(player);
+		}
+
+	}
+	
+	public void movePlayerToSpawn(Player player) {
+
 			player.startGame();
 			player.teleport(spawnPoints[spawnNumber]);
 			spawnNumber = spawnNumber + 1;
-			if(spawnNumber >= spawnPoints.length){
+			if(spawnNumber >= spawnPoints.length) {
 
 				spawnNumber = 0;
 
 			}
-			
-		}
+
 		
 	}
-	
+
 	public void onTimerExpire() {
 		
 		gamePhase = gamePhase + 1;
@@ -101,6 +106,6 @@ public class Game extends BaseGame {
 			broadcastTitle("You won!", "May the odds be ever in your favour!");
 			gamePhase = 4;
 			
-		}
-	}
+		}	
+	}	
 }

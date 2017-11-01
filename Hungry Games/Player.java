@@ -16,7 +16,7 @@ public class Player extends BasePlayer {
 			
 		} else {
 
-			startGame();
+			getGame().movePlayerToSpawn(this);
 
 		}
 
@@ -35,7 +35,7 @@ public class Player extends BasePlayer {
 		setGameMode(GameMode.ADVENTURE);
 		clearInventory();
 		setFoodLevel(20);
-		setHealth(20);		
+		setHealth(20);
 
 	}	
 		
