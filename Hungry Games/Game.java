@@ -47,7 +47,7 @@ public class Game extends BaseGame {
 				spawnNumber = 0;
 
 			}
-
+			createWorldBorder(500);
 		
 	}
 
