@@ -37,6 +37,10 @@ public class Player extends BasePlayer {
 	
 	public void startHiding() {
 		
+		clearInventory();
+		addItemToInventory(new ItemStack(Material.STAINED_GLASS, 16));
+		setGameMode(GameMode.SURVIVAL);
+		getGame().broadcastMessage(name + " is hiding the boxes!");
 		sendMessage("You're hiding the boxes! Hide as many boxes as you can around the map.");
 		teleport( getGame().outside );
 		
@@ -44,12 +48,16 @@ public class Player extends BasePlayer {
 	
 	public void endHiding() {
 		
+		clearInventory();
+		setGameMode(GameMode.ADVENTURE);
 		sendMessage("Time's up! Let's see if anyone finds your boxes!");
 
 	}
 	
 	public void freeze() {
 		
+		clearInventory();
+		setGameMode(GameMode.ADVENTURE);
 		sendMessage("You're going to be finding boxes! wait for the hider to hide all the boxes!" );
 		teleport( getGame().jail );
 		
@@ -57,6 +65,8 @@ public class Player extends BasePlayer {
 
 	public void unfreeze() {
 		
+		score = 0;
+		setGameMode(GameMode.SURVIVAL);
 		sendMessage("Time to find the boxes! Go!");
 		teleport(getGame().outside);
 		
