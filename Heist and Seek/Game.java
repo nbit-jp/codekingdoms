@@ -1,4 +1,4 @@
-package space.codekingdoms.nbituser.mylazyheist;
+package space.codekingdoms.nbituser.nbitheistseek;
 
 import com.codekingdoms.nozzle.base.BaseGame;
 import org.bukkit.Location;
@@ -10,6 +10,8 @@ public class Game extends BaseGame {
 	public Location jail;
 	
 	public Location outside;
+	
+	public boolean seeking;
 	
 	public void onCodeUpdate() {
 		
@@ -23,6 +25,8 @@ public class Game extends BaseGame {
 	
 	public void startHiding() {
 		
+		seeking = false;
+
 		if (getPlayerList().length == 0) {
 			
 			broadcastMessage("No players on your server, game stopping.");
@@ -34,7 +38,8 @@ public class Game extends BaseGame {
 		chosenPlayerNumber = chosenPlayerNumber - 1;
 		Player chosenPlayer = getPlayerList()[chosenPlayerNumber];
 
-		for (Player player:getPlayerList()) {		
+		for (Player player : getPlayerList()) {
+			
 			if (player.equals(chosenPlayer)) {
 				
 				player.isHider = true;
@@ -46,22 +51,34 @@ public class Game extends BaseGame {
 				player.freeze();
 				
 			}
+			
 		}
-		startTimer(120);
+		
+		startTimer(10);
 	
 	}
 	
 	public void onTimerExpire() {
 		
-		startSeeking();
-		
+		if(!seeking) {
+
+			startSeeking();
+
+		} else {
+			
+			broadcastMessage("Game Over !");
+
+		}
+	
 	}
 	
 	public void startSeeking() {
 		
-		for( Player player : getPlayerList()) {
+		seeking = true;
+		
+		for (Player player : getPlayerList()) {
 			
-			if( player.isHider) {
+			if (player.isHider) {
 				
 				player.endHiding();
 				
@@ -70,7 +87,14 @@ public class Game extends BaseGame {
 				player.unfreeze();
 				
 			}
+
 		}
-	}
 		
+		startTimer(180);
+
+	}
+
+	public void endGame() {
+		
+	}
 }
