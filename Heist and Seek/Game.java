@@ -54,7 +54,7 @@ public class Game extends BaseGame {
 			
 		}
 		
-		startTimer(10);
+		startTimer(120);
 	
 	}
 	
@@ -67,7 +67,7 @@ public class Game extends BaseGame {
 		} else {
 			
 			broadcastMessage("Game Over !");
-
+			
 		}
 	
 	}
@@ -95,6 +95,26 @@ public class Game extends BaseGame {
 	}
 
 	public void endGame() {
+	
+		for (Player player : getPlayerList()) {
+			
+			if(!player.isHider) {
+				
+				broadcastMessage(player.name + " scored " + player.score);
+			}
+
+		}
 		
+		resetWorld();
+		
+		setTimeout( () -> {
+			
+			onCodeUpdate();
+
+		}
+		, 15);
+		
+		broadcastMessage("Restarting in 15 seconds!");
+	
 	}
 }
