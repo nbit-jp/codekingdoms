@@ -16,7 +16,14 @@ public class Game extends BaseGame {
 		
 		return array[Random.generateInteger(0, array.length - 1)];
 	
+    }
+    
+    public void onCodeUpdate() {
+		
+		disableMobSpawning();
+		createWorldBorder(50);
+		world.setTime(13000);
+		
 	}
-	
 	
 }
