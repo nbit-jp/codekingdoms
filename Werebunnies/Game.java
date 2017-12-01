@@ -30,11 +30,11 @@ public class Game extends BaseGame {
 		bunnies.setColour(ChatColor.RED);
 		for (Player player:getPlayerList()) {
 			
-			humans.addPlayer(player);
+			player.setHuman();
 			
 		}
 
-		bunnies.addPlayer(getRandomPlayer());
+		getRandomPlayer().setBunny();
 		
 	}
 	

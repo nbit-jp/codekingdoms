@@ -30,12 +30,17 @@ public class Player extends BasePlayer {
 	public void setHuman() {
 		
 		isHuman = true;
-		
+		setFaction(getGame().humans);
+		equip();
+
 	}
 
 	public void setBunny() {
 		
 		isHuman = false;
+		getGame().broadcastMessage(name + " became a werebunny!");
+		setFaction(getGame().bunnies);
+		equip();
 		
 	}	
 }
