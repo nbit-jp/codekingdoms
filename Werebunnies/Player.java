@@ -21,7 +21,7 @@ public class Player extends BasePlayer {
 			equipFullArmorSet(ArmorSet.LEATHER);
 			
 		}
-
+		
 	}
 	
 	public void onJoin() {
@@ -64,7 +64,7 @@ public class Player extends BasePlayer {
 		if(isHuman) {
 			
 			setBunny();
-			getGame().checkGameOver();
+			getGame().checkGameOver(name);
 			
 		}
 		

@@ -47,7 +47,7 @@ public class Game extends BaseGame {
 	
 	}
 	
-	public void checkGameOver() {
+	public void checkGameOver(String SurvivorName) {
 		
 		for(Player player:getPlayerList()) {
 			
@@ -57,8 +57,9 @@ public class Game extends BaseGame {
 
 		}
 		
+		broadcastMessage("GameOver! the last survivor was " + SurvivorName);
 		startRound();
-		
+
 	}
 	
 }
