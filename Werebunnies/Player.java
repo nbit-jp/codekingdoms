@@ -21,7 +21,7 @@ public class Player extends BasePlayer {
 			equipFullArmorSet(ArmorSet.LEATHER);
 			
 		}
-	
+		
 	}
 	
 	public void onJoin() {
@@ -56,6 +56,26 @@ public class Player extends BasePlayer {
 	public void onRespawn() {
 		
 		equip();
+		
+	}
+	
+	public void killed() {
+		
+		if(isHuman) {
+			
+			setBunny();
+			
+		}
+		
+	}
+	
+	public void onKillPlayer(String playerKilledName) {
+		
+		if(!isHuman) {
+			
+			getGame().getPlayer(playerKilledName).killed();
+			
+		}
 		
 	}
 	
