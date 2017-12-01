@@ -9,6 +9,7 @@ import com.codekingdoms.nozzle.utils.ArmorSet;
 public class Player extends BasePlayer {
 	
 	public boolean isHuman;
+	public int score = 0;
 	
 	public void equip() {
 		
@@ -77,6 +78,8 @@ public class Player extends BasePlayer {
 			getGame().getPlayer(playerKilledName).killed();
 			
 		}
+		score = score + 1;
+		sendMessage("Your score is now " + score);
 		
 	}
 	
