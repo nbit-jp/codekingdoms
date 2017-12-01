@@ -43,8 +43,9 @@ public class Game extends BaseGame {
 		disableMobSpawning();
 		createWorldBorder(50);
 		world.setTime(13000);
-		startRound();
-	
+		startTimer(30);
+		broadcastMessage("Game starts in 30 seconds!");
+		
 	}
 	
 	public void checkGameOver(String SurvivorName) {
@@ -58,8 +59,14 @@ public class Game extends BaseGame {
 		}
 		
 		broadcastMessage("GameOver! the last survivor was " + SurvivorName);
-		startRound();
-
+		startTimer(30);
+		broadcastMessage("Next round starts in 30 seconds!");
+		
 	}
 	
+	public void onTimerExpire() {
+		
+		startRound();
+		
+	}
 }

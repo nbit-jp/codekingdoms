@@ -78,9 +78,20 @@ public class Player extends BasePlayer {
 			getGame().getPlayer(playerKilledName).killed();
 			
 		}
-		score = score + 1;
-		sendMessage("Your score is now " + score);
 		
+		if(isHuman == getGame().getPlayer(playerKilledName).isHuman) {
+			
+			score = score - 1;
+			sendMessage("You betrayed " + playerKilledName);
+			
+		} else {
+		
+			score = score + 1;
+			sendMessage("You killed " + playerKilledName);
+		
+		}
+
+		sendMessage("Your score is now " + score);
+
 	}
-	
 }
