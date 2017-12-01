@@ -2,6 +2,7 @@ package space.codekingdoms.nbituser.mybrainybunnies;
 
 import com.codekingdoms.nozzle.base.BaseGame;
 import com.codekingdoms.nozzle.utils.Random;
+import org.bukkit.ChatColor;
 
 public class Game extends BaseGame {
 	
@@ -23,7 +24,8 @@ public class Game extends BaseGame {
 	public void startRound() {
 		
 		humans = new Faction();
-		
+		humans.setColour(ChatColor.GREEN);
+	
 	}
 	
 	public void onCodeUpdate() {
@@ -32,7 +34,7 @@ public class Game extends BaseGame {
 		createWorldBorder(50);
 		world.setTime(13000);
 		startRound();
-		
+	
 	}
-		
+	
 }
