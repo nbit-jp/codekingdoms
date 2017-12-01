@@ -16,7 +16,6 @@ public class Player extends BasePlayer {
 	public void onJoin() {
 		
 		equip();
-		setFaction(getGame().humans);
 	
 	}
 	

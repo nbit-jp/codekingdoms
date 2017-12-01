@@ -7,6 +7,7 @@ import org.bukkit.ChatColor;
 public class Game extends BaseGame {
 	
 	public Faction humans;
+	public Faction bunnies;
 	
 	public Player getRandomPlayer() {
 		
@@ -25,7 +26,16 @@ public class Game extends BaseGame {
 		
 		humans = new Faction();
 		humans.setColour(ChatColor.GREEN);
-	
+		bunnies = new Faction();
+		bunnies.setColour(ChatColor.RED);
+		for (Player player:getPlayerList()) {
+			
+			humans.addPlayer(player);
+			
+		}
+
+		bunnies.addPlayer(getRandomPlayer());
+		
 	}
 	
 	public void onCodeUpdate() {
