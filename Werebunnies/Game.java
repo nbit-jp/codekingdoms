@@ -47,4 +47,18 @@ public class Game extends BaseGame {
 	
 	}
 	
+	public void checkGameOver() {
+		
+		for(Player player:getPlayerList()) {
+			
+			if(player.isHuman) {
+				return;
+			}
+
+		}
+		
+		startRound();
+		
+	}
+	
 }
