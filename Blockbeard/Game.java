@@ -14,7 +14,7 @@ public class Game extends BaseGame {
 	public void onCodeUpdate() {
 		
 		startTimer(300);
-		createWorldBorder(radius*2);
+		createWorldBorder(radius * 2);
 		startRound();
 	
 	}
@@ -28,9 +28,9 @@ public class Game extends BaseGame {
 			() -> {
 				
 				broadcastMessage(chestPosition.toString());
-                world.spawnParticle(Particle.ENCHANTMENT_TABLE, 
-                                    world.getHighestBlockAt(chestPosition.getBlockX(), chestPosition.getBlockZ()).getLocation(), 
-                                    50);
+				world.spawnParticle(Particle.ENCHANTMENT_TABLE, 
+									world.getHighestBlockAt(chestPosition.getBlockX(), chestPosition.getBlockZ()).getLocation(),
+									50);
 				
 			}
 		, 0, 1);
@@ -40,6 +40,7 @@ public class Game extends BaseGame {
 	public void endGame() {
 		
 		broadcastMessage("The game is over!");
+		cancelChest();
 		resetGame();
 	
 	}
@@ -60,5 +61,11 @@ public class Game extends BaseGame {
 	
 	}
 	
+	public void cancelChest() {
+		
+		setBlockTypeAtLocation(Material.AIR, chestPosition);
+		stopAllTimeouts();
+		
+	}
 	
 }
