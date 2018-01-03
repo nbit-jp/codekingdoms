@@ -22,6 +22,19 @@ public class Game extends BaseGame {
 		
 	}
 	
+	public void endGame() {
+		
+		broadcastMessage("The game is over!");
+		resetGame();
+		
+	}
+	
+	public void onTimerExpire() {
+
+		endGame();
+
+	}
+
 	public Location getRandomBlockAtHeight( int yOffest ) {
 		
 		Location spawnLocation = world.getSpawnLocation();
