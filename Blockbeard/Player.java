@@ -39,5 +39,14 @@ public class Player extends BasePlayer {
 	
 	}
 	
-	
+	public void onMine(Block block) {
+		
+		if(block.equals(world.getBlockAt(getGame().chestPosition))) {
+			
+			getGame().broadcastTitle("Treasure found!", name + "has found the loot!");
+			getGame().cancelChest();
+			getGame().startRound();
+
+		}
+	}
 }
