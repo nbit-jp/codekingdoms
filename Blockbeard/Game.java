@@ -4,6 +4,7 @@ import com.codekingdoms.nozzle.base.BaseGame;
 import com.codekingdoms.nozzle.utils.Random;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 
 public class Game extends BaseGame {
 	
@@ -21,8 +22,18 @@ public class Game extends BaseGame {
 	public void startRound() {
 		
 		chestPosition = getRandomBlockAtHeight(-3);
-		broadcastMessage(chestPosition.toString());
 		setBlockTypeAtLocation(Material.EMERALD_BLOCK, chestPosition);
+		setInterval(
+			
+			() -> {
+				
+				broadcastMessage(chestPosition.toString());
+                world.spawnParticle(Particle.ENCHANTMENT_TABLE, 
+                                    world.getHighestBlockAt(chestPosition.getBlockX(), chestPosition.getBlockZ()).getLocation(), 
+                                    50);
+				
+			}
+		, 0, 1);
 	
 	}
 	
