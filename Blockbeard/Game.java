@@ -8,6 +8,7 @@ import org.bukkit.Material;
 public class Game extends BaseGame {
 	
 	int radius = 50;
+	Location chestPosition;
 	
 	public void onCodeUpdate() {
 		
@@ -19,7 +20,7 @@ public class Game extends BaseGame {
 	
 	public void startRound() {
 		
-		Location chestPosition = getRandomBlockAtHeight(-3);
+		chestPosition = getRandomBlockAtHeight(-3);
 		broadcastMessage(chestPosition.toString());
 		setBlockTypeAtLocation(Material.EMERALD_BLOCK, chestPosition);
 	
