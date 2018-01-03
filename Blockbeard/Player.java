@@ -19,6 +19,7 @@ public class Player extends BasePlayer {
 	public void onRespawn() {
 		
 		spawnPlayer();
+		setBedSpawnLocation(getGame().getRandomBlockAtHeight(0));
 		
 	}
 	
