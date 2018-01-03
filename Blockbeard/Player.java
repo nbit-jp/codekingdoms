@@ -14,6 +14,7 @@ public class Player extends BasePlayer {
 		addItemToInventory(new ItemStack(Material.IRON_PICKAXE));
 		addItemToInventory(new ItemStack(Material.IRON_SPADE));
 		addItemToInventory(new ItemStack(Material.COMPASS));
+		setCompassTarget(getGame().chestPosition);
 	
 	}
 	
