@@ -9,6 +9,9 @@ public class Game extends BaseGame {
 	int radius = 50;
 	
 	public void onCodeUpdate() {
+	
+		startTimer(300);
+		createWorldBorder(radius*2);
 		
 	}
 	
