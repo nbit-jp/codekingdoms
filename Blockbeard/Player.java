@@ -1,8 +1,10 @@
 package space.codekingdoms.nbituser.mysmallisland;
 
 import com.codekingdoms.nozzle.base.BasePlayer;
-import org.bukkit.Material;
+import org.bukkit.block.Block;
+import com.codekingdoms.nozzle.utils.ProjectileType;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.Material;
 
 public class Player extends BasePlayer {
 	
@@ -14,8 +16,14 @@ public class Player extends BasePlayer {
 		addItemToInventory(new ItemStack(Material.IRON_PICKAXE));
 		addItemToInventory(new ItemStack(Material.IRON_SPADE));
 		addItemToInventory(new ItemStack(Material.COMPASS));
-		setCompassTarget(getGame().chestPosition);
-	
+		setTimeout(
+			
+			() -> {
+				
+				setCompassTarget(getGame().chestPosition);
+				
+			}
+		, 1);
 	}
 	
 	public void onJoin() {

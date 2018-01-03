@@ -8,8 +8,8 @@ import org.bukkit.Particle;
 
 public class Game extends BaseGame {
 	
-	int radius = 50;
-	Location chestPosition;
+	public int radius = 50;
+	public Location chestPosition;
 	
 	public void onCodeUpdate() {
 		
@@ -27,10 +27,7 @@ public class Game extends BaseGame {
 			
 			() -> {
 				
-				broadcastMessage(chestPosition.toString());
-				world.spawnParticle(Particle.ENCHANTMENT_TABLE, 
-									world.getHighestBlockAt(chestPosition.getBlockX(), chestPosition.getBlockZ()).getLocation(),
-									50);
+				world.spawnParticle(Particle.ENCHANTMENT_TABLE, world.getHighestBlockAt(chestPosition).getLocation(), 50);
 				
 			}
 		, 0, 1);
@@ -39,7 +36,6 @@ public class Game extends BaseGame {
 	
 	public void endGame() {
 		
-		broadcastMessage("The game is over!");
 		cancelChest();
 		resetGame();
 	
@@ -47,6 +43,7 @@ public class Game extends BaseGame {
 	
 	public void onTimerExpire() {
 		
+		broadcastMessage("Time is out!");
 		endGame();
 	
 	}
@@ -63,8 +60,8 @@ public class Game extends BaseGame {
 	
 	public void cancelChest() {
 		
-		setBlockTypeAtLocation(Material.AIR, chestPosition);
 		stopAllTimeouts();
+		setBlockTypeAtLocation(Material.AIR, chestPosition);
 		
 	}
 	
