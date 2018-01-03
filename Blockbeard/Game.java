@@ -8,6 +8,10 @@ public class Game extends BaseGame {
 	
 	int radius = 50;
 	
+	public void onCodeUpdate() {
+		
+	}
+	
 	public Location getRandomBlockAtHeight( int yOffest ) {
 		
 		Location spawnLocation = world.getSpawnLocation();
