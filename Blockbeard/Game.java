@@ -12,6 +12,13 @@ public class Game extends BaseGame {
 	
 		startTimer(300);
 		createWorldBorder(radius*2);
+		startRound();
+		
+	}
+	
+	public void startRound() {
+		
+		broadcastMessage("Round started!");
 		
 	}
 	
