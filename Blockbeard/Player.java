@@ -40,7 +40,8 @@ public class Player extends BasePlayer {
 	public void onDeath() {
 		
 		alive = false;
-		setGameMode(GameMode.SPECTATOR);
+		setGameMode(GameMode.SURVIVAL);
+		getGame().checkSurvivors();
 
 	}
 	
@@ -49,8 +50,8 @@ public class Player extends BasePlayer {
 		if( alive ) {
 			spawnPlayer();
 			setBedSpawnLocation(getGame().getRandomBlockAtHeight(0));
-        }
-        	
+		}
+		
 	}
 	
 	public void onMine( Block block ) {

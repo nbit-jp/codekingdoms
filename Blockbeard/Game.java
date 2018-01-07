@@ -5,11 +5,13 @@ import com.codekingdoms.nozzle.utils.Random;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
+import org.bukkit.entity.Rabbit.Type;
 
 public class Game extends BaseGame {
 	
-	public int radius = 50;
-	public Location chestPosition;
+	int radius = 50;
+	
+	Location chestPosition;
 	
 	public void onCodeUpdate() {
 		
@@ -27,30 +29,55 @@ public class Game extends BaseGame {
 			
 			() -> {
 				
-				world.spawnParticle(Particle.ENCHANTMENT_TABLE, world.getHighestBlockAt(chestPosition).getLocation(), 50);
+				world.spawnParticle(Particle.ENCHANTMENT_TABLE, world.getHighestBlockAt(chestPosition.getBlockX(), chestPosition.getBlockZ()).getLocation(), 50);
 				
 			}
 		, 0, 1);
-		for(Player player : getPlayerList()) {
+		for (Player player: getPlayerList()) {
 			
 			player.spawnPlayer();
 			
 		}
-		
+	
 	}
 	
 	public void endGame() {
 		
+		broadcastMessage("The game is over!");
 		cancelChest();
 		resetGame();
 	
 	}
 	
+	public void cancelChest() {
+		
+		setBlockTypeAtLocation(Material.AIR, chestPosition);
+		stopAllTimeouts();
+	
+	}
+	
 	public void onTimerExpire() {
 		
-		broadcastMessage("Time is out!");
 		endGame();
 	
+	}
+	
+	public void checkSurvivors() {
+		
+		int alivePlayerCount = 0;
+		Player[] playerList = getPlayerList();
+		
+		for (int i = 0; i < playerList.length; i = i + 1) {
+			
+			if (playerList[i].alive) {
+				alivePlayerCount = alivePlayerCount + 1;
+				
+				if (alivePlayerCount >= 2) {
+					return;
+				}
+			}
+			
+		}
 	}
 	
 	public Location getRandomBlockAtHeight( int yOffest ) {
@@ -63,11 +90,5 @@ public class Game extends BaseGame {
 	
 	}
 	
-	public void cancelChest() {
-		
-		stopAllTimeouts();
-		setBlockTypeAtLocation(Material.AIR, chestPosition);
-		
-	}
 	
 }
