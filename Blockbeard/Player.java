@@ -5,11 +5,16 @@ import org.bukkit.block.Block;
 import com.codekingdoms.nozzle.utils.ProjectileType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.Material;
+import org.bukkit.GameMode;
 
 public class Player extends BasePlayer {
 	
+	public boolean alive;
+	
 	public void spawnPlayer() {
 		
+		alive = true;
+		setGameMode(GameMode.SURVIVAL);
 		clearInventory();
 		teleport(getGame().getRandomBlockAtHeight(0));
 		addItemToInventory(new ItemStack(Material.IRON_SWORD));
@@ -32,6 +37,13 @@ public class Player extends BasePlayer {
 	
 	}
 	
+	public void onDeath() {
+		
+		alive = false;
+		setGameMode(GameMode.SPECTATOR);
+
+	}
+	
 	public void onRespawn() {
 		
 		spawnPlayer();
@@ -39,14 +51,14 @@ public class Player extends BasePlayer {
 	
 	}
 	
-	public void onMine(Block block) {
+	public void onMine( Block block ) {
 		
-		if(block.equals(world.getBlockAt(getGame().chestPosition))) {
+		if (block.equals(world.getBlockAt(getGame().chestPosition))) {
 			
 			getGame().broadcastTitle("Treasure found!", name + "has found the loot!");
 			getGame().cancelChest();
 			getGame().startRound();
-
+			
 		}
 	}
 }
