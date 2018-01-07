@@ -65,31 +65,37 @@ public class Game extends BaseGame {
 	public void checkSurvivors() {
 		
 		int alivePlayerCount = 0;
+		int lastPlayerIndex = -1;
 		Player[] playerList = getPlayerList();
-		
-		for (int i = 0; i < playerList.length; i = i + 1) {
-			
-			if (playerList[i].alive) {
-				alivePlayerCount = alivePlayerCount + 1;
-				
-				if (alivePlayerCount >= 2) {
-					return;
-				}
-			}
-			
+	 
+		for (int i = 0; i < playerList.length; i = i+1) {
+	 	
+	 		if(playerList[i].alive) {
+	 	
+	 			lastPlayerIndex = i;
+	 			alivePlayerCount = alivePlayerCount + 1;
+	 			if( alivePlayerCount >=2 ) {
+	 				
+	 				return;
+	 			
+	 			}
+	 	
+	 		}
 		}
+		
 		if( alivePlayerCount == 0) {
 			
 			endGame();
 			return;
 			
 		}
+		Player lastSurvivor = playerList[ lastPlayerIndex ];
 		cancelChest();
 		startRound();
-		broadcastTitle("Yarr", "Ye be the last pirate  standing!");
+		broadcastTitle("Yarr", lastSurvivor.name + " be the last pirate  standing!");
 		
 	}
-	
+		
 	public Location getRandomBlockAtHeight( int yOffest ) {
 		
 		Location spawnLocation = world.getSpawnLocation();
