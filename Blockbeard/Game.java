@@ -78,6 +78,16 @@ public class Game extends BaseGame {
 			}
 			
 		}
+		if( alivePlayerCount == 0) {
+			
+			endGame();
+			return;
+			
+		}
+		cancelChest();
+		startRound();
+		broadcastTitle("Yarr", "Ye be the last pirate  standing!");
+		
 	}
 	
 	public Location getRandomBlockAtHeight( int yOffest ) {
