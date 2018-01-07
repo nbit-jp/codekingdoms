@@ -31,7 +31,12 @@ public class Game extends BaseGame {
 				
 			}
 		, 0, 1);
-	
+		for(Player player : getPlayerList()) {
+			
+			player.spawnPlayer();
+			
+		}
+		
 	}
 	
 	public void endGame() {
