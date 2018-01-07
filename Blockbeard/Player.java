@@ -10,6 +10,7 @@ import org.bukkit.GameMode;
 public class Player extends BasePlayer {
 	
 	public boolean alive;
+	public int score;
 	
 	public void spawnPlayer() {
 		
@@ -64,4 +65,12 @@ public class Player extends BasePlayer {
 			
 		}
 	}
+	
+	public void addToScore(int scoreChange) {
+		
+		score = score + scoreChange;
+		setPlayerListName((name + ": ") + score);
+
+	}
+	
 }
