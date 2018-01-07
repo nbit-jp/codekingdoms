@@ -2,7 +2,6 @@ package space.codekingdoms.nbituser.mysmallisland;
 
 import com.codekingdoms.nozzle.base.BasePlayer;
 import org.bukkit.block.Block;
-import com.codekingdoms.nozzle.utils.ProjectileType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.Material;
 import org.bukkit.GameMode;
@@ -38,39 +37,47 @@ public class Player extends BasePlayer {
 	
 	}
 	
-	public void onDeath() {
-		
-		alive = false;
-		setGameMode(GameMode.SURVIVAL);
-		getGame().checkSurvivors();
-
-	}
-	
 	public void onRespawn() {
 		
-		if( alive ) {
+		if (alive) {
+			
 			spawnPlayer();
 			setBedSpawnLocation(getGame().getRandomBlockAtHeight(0));
 		}
-		
+			
 	}
 	
 	public void onMine( Block block ) {
 		
 		if (block.equals(world.getBlockAt(getGame().chestPosition))) {
 			
-			getGame().broadcastTitle("Treasure found!", name + "has found the loot!");
+			addToScore(10);
+			getGame().broadcastTitle("Treasure found!", name + " has found the loot!");
 			getGame().cancelChest();
 			getGame().startRound();
 			
 		}
 	}
 	
-	public void addToScore(int scoreChange) {
+	public void addToScore( int scoreChange ) {
 		
 		score = score + scoreChange;
-		setPlayerListName((name + ": ") + score);
-
+		setPlayerListName(( name + ": " ) + score);
+	
+	}
+	
+	public void onKillPlayer( String playerKilledName ) {
+		
+		addToScore(1);
+	
+	}
+	
+	public void onDeath() {
+		
+		alive = false;
+		setGameMode(GameMode.SPECTATOR);
+		getGame().checkSurvivors();
+	
 	}
 	
 }
