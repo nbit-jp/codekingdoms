@@ -18,6 +18,12 @@ public class Game extends BaseGame {
 		startTimer(300);
 		createWorldBorder(radius * 2);
 		startRound();
+		for(Player player : getPlayerList()) {
+			
+			player.score = 0;
+			player.addToScore(0);
+
+		}
 	
 	}
 	
