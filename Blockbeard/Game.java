@@ -6,6 +6,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.entity.Rabbit.Type;
+import org.bukkit.ChatColor;
 
 public class Game extends BaseGame {
 	
@@ -18,13 +19,12 @@ public class Game extends BaseGame {
 		startTimer(300);
 		createWorldBorder(radius * 2);
 		startRound();
-		for(Player player : getPlayerList()) {
+		for (Player player : getPlayerList()) {
 			
 			player.score = 0;
 			player.addToScore(0);
-
+			
 		}
-	
 	}
 	
 	public void startRound() {
@@ -44,11 +44,38 @@ public class Game extends BaseGame {
 			player.spawnPlayer();
 			
 		}
-	
+		
 	}
 	
 	public void endGame() {
 		
+		String bestPlayer = "";
+		int highestScore = 0;
+		//Check every Player
+		for (Player player: getPlayerList()) {
+			
+			player.sendMessage(( ChatColor.AQUA + "Yer score be " ) + player.score);
+			if (player.score > highestScore) {
+				
+				highestScore = player.score;
+				bestPlayer = player.name;
+				
+			}
+		}
+		
+		if (getPlayerList().length > 1) {
+			
+			broadcastTitle("Game over!", ( ChatColor.GREEN + "The best player be " ) + bestPlayer);
+			
+		}
+		
+		else {
+			
+			broadcastTitle("Game over!", (ChatColor.GREEN + "Yer score be ") + highestScore);
+			
+		}
+		
+		//We have the best player!
 		broadcastMessage("The game is over!");
 		cancelChest();
 		resetGame();
@@ -73,13 +100,11 @@ public class Game extends BaseGame {
 		int alivePlayerCount = 0;
 		int lastPlayerIndex = -1;
 		Player[] playerList = getPlayerList();
-		
 		for (int i = 0; i < playerList.length; i = i + 1) {
 			
 			if (playerList[i].alive) {
 				
 				lastPlayerIndex = i;
-				
 				alivePlayerCount = alivePlayerCount + 1;
 				if (alivePlayerCount >= 2) {
 					return;
@@ -98,7 +123,6 @@ public class Game extends BaseGame {
 		startRound();
 		broadcastTitle("Yarr!", lastSurvivor.name + " be the last pirate standing!");
 	}
-	
 	
 	public Location getRandomBlockAtHeight( int yOffest ) {
 		
